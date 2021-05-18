@@ -103,7 +103,7 @@ void Container::write()
             cout << temp->getPosition() << ". " << temp->getObject() << endl;
             temp=temp->getNext();
         }while(temp);
-        cout << endl << "Lista ma " << number_of_elements << " elementow" << endl;
+        cout << "Lista ma " << number_of_elements << " elementow" << endl;
     }
 }
 
@@ -168,11 +168,57 @@ void Container::swap(int one, int two)
 
             break;
         }
-        if(temp->getNext())
-            temp=temp->getNext();
+        temp=temp->getNext();
     }
 }
 
+void Container::deleteElement(int number)
+{
+    Element *temp=first;
+
+    if(number>number_of_elements)
+    {
+        cout << "Nie ma takiego elementu" << endl;
+        return;
+    }
+
+    if(number==1)
+    {
+        first->getNext()->setPrev(NULL);
+        temp=first->getNext();
+        delete first;
+        first=temp;
+        number_of_elements--;
+        while(temp)
+        {
+            temp->setPosition(temp->getPosition()-1);
+            temp=temp->getNext();
+        }
+        return;
+    }
+
+    if(number==number_of_elements)
+    {
+        temp=last;
+        last->getPrev()->setNext(NULL);
+        temp=last->getPrev();
+        delete last;
+        last=temp;
+        number_of_elements--;
+        return;
+    }
+
+    while(temp)
+    {
+        if(temp->getPosition()==number)
+        {
+            delete temp;
+            number_of_elements--;
+            return;
+        }
+        temp=temp->getNext();
+    }
+}
 
 
 

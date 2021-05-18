@@ -2,6 +2,27 @@
 #include <iostream>
 #include "element.h"
 
+using namespace std;
+
+Element::~Element()
+{
+    #ifdef _DEBUG
+        cout << "~Element()" << endl;
+    #endif
+
+    if(prev && next)
+    {
+        prev->setNext(next);
+        next->setPrev(prev);
+        Element *temp=this->next;
+        while(temp)
+        {
+            temp->setPosition(temp->getPosition()-1);
+            temp=temp->getNext();
+        }
+    }
+}
+
 Element *Element::getNext() const
 {
     return next;

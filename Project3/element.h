@@ -5,7 +5,7 @@ class Element
 {
 public:
     //Element();
-    //~Element();
+    ~Element();
 
     Element *getNext() const;
     void setNext(Element *value);

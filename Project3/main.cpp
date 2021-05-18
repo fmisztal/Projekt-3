@@ -17,8 +17,12 @@ int main()
     testowy.addNew(g);
     testowy.addNew(h);
 
+    /*testowy.write();
+    testowy.swap(2,8);
+    testowy.write();*/
+
     testowy.write();
-    testowy.swap(8,1);
+    testowy.deleteElement(4);
     testowy.write();
 
     return 0;

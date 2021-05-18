@@ -20,6 +20,7 @@ public:
     void addNew(int nowa_dana);
     void write();
     void swap(int one, int two);
+    void deleteElement(int number);
 
 private:
     Element *first;
