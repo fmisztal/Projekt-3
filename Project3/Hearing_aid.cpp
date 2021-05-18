@@ -141,28 +141,15 @@ void Hearing_aid::ownership()
 
 ostream& operator<<(ostream &os, Hearing_aid &h)
 {
-    os  << "Name: " << h.name() << " , Amplification: " << h.amplification_x() << endl;
-    if(h.number_of_parameters()!=0)
-    {
-        os << "Number of parameters- " << h.number_of_parameters() << " : ";
-        for(int i=0; i<h.number_of_parameters(); i++)
-        {
-            if(i!=0 && i<h.number_of_parameters())
-                os << " , ";
-            os << *(h.parameters[i]);
-        }
-        os << endl;
-    }
-    return os;
-};
+    Electronic_device *ctpr;
+    ctpr=dynamic_cast<Electronic_device*>(&h);
+    os << *ctpr;
 
-ostream& operator<<=(ostream &os, Hearing_aid &h)
-{
     os << h.name() << endl;
     os << h.amplification_x() << " , " << h.number_of_parameters() << endl;
     if(h.number_of_parameters()!=0)
         for(int i=0; i<h.number_of_parameters(); i++)
-            os <<= *(h.parameters[i]);
+            os << *(h.parameters[i]);
     return os;
 }
 
@@ -171,6 +158,10 @@ istream& operator>>(istream &is, Hearing_aid &h)
     string temp, name, par_name, username;
     char sign;
     int amplification, number_of_parameters, par_value;
+
+    Electronic_device *ctpr;
+    ctpr=dynamic_cast<Electronic_device*>(&h);
+    is >> *ctpr;
 
     getline(is, temp);
     getline(is, name);
@@ -181,6 +172,7 @@ istream& operator>>(istream &is, Hearing_aid &h)
 
     h.deleteVector();
     getline(is, temp);
+    cout << temp;
 
     for(int i=0; i<number_of_parameters; i++)
     {
@@ -253,8 +245,19 @@ void Hearing_aid::draw()
     cout << "-----------HEARING_AID-----------" << endl;
     Electronic_device *ctpr;
     ctpr=dynamic_cast<Electronic_device*>(this);
-    cout << *ctpr;
-    cout << *this;
+    cout <<= *ctpr;
+    cout << "Name: " << name() << " , Amplification: " << amplification_x() << endl;
+    if(number_of_parameters()!=0)
+    {
+        cout << "Number of parameters- " << number_of_parameters() << " : ";
+        for(int i=0; i<number_of_parameters(); i++)
+        {
+            if(i!=0 && i<number_of_parameters())
+                cout << " , ";
+            cout <<= *(parameters[i]);
+        }
+        cout << endl;
+    }
 }
 
 void Hearing_aid::save()
@@ -272,11 +275,7 @@ void Hearing_aid::save()
     }
 
     ofs << "-----------HEARING_AID-----------" << endl;
-
-    Electronic_device *ctpr;
-    ctpr=dynamic_cast<Electronic_device*>(this);
-    ofs <<= *ctpr;
-    ofs <<= *this;
+    ofs << *this;
 
     ofs.close();
 }
@@ -306,9 +305,6 @@ void Hearing_aid::open()
         }
     }
 
-    Electronic_device *ctpr;
-    ctpr=dynamic_cast<Electronic_device*>(this);
-    ifs >> *ctpr;
     ifs >> *this;
 
     ifs.close();

@@ -74,7 +74,7 @@ void Parameter::setValue(int value)
     m_value = value;
 };
 
-ostream& operator<<(ostream &ost, Parameter &p)
+ostream& operator<<=(ostream &ost, Parameter &p)
 {
     if(p.name()=="")
         return ost << "";
@@ -85,7 +85,7 @@ ostream& operator<<(ostream &ost, Parameter &p)
     return ost << p.name() << " - " << p.value();
 };
 
-ostream& operator<<=(ostream &ost, Parameter &p)
+ostream& operator<<(ostream &ost, Parameter &p)
 {
     return ost << p.name() << endl << p.value() << endl;
 }

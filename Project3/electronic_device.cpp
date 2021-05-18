@@ -103,17 +103,18 @@ istream &operator>>(istream &is, Electronic_device &e)
     return is;
 }
 
-ostream& operator<<(ostream &ost, Electronic_device &e)
-{
-    ost << "Production year: " << e.production_year() << endl;
-    return ost << e.battery() << e.user();
-}
-
 ostream& operator<<=(ostream &ost, Electronic_device &e)
 {
-    ost << e.production_year() << endl;
+    ost << "Production year: " << e.production_year() << endl;
     ost <<= e.battery();
     return ost <<= e.user();
+}
+
+ostream& operator<<(ostream &ost, Electronic_device &e)
+{
+    ost << e.production_year() << endl;
+    ost << e.battery();
+    return ost << e.user();
 }
 
 

@@ -21,6 +21,8 @@ public:
     void write();
     void swap(int one, int two);
     void deleteElement(int number);
+    void save();
+    void open();
 
 private:
     Element *first;

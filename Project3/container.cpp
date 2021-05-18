@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include "container.h"
 
 using namespace std;
@@ -220,5 +221,43 @@ void Container::deleteElement(int number)
     }
 }
 
+void Container::save()
+{
+    ofstream ofs;
+    ofs.open("file.txt", ios_base::out);
+    if(!ofs.good())
+    {
+        cout << "Couldn't open the database" << endl;
+        return;
+    }
+    Element *temp=first;
+    while(temp)
+    {
+        ofs << temp->getObject() << endl;
+        temp=temp->getNext();
+    }
 
+    ofs.close();
+}
 
+void Container::open()
+{
+    ifstream ifs;
+    ifs.open("file.txt", ios_base::in);
+    if(!ifs.good())
+    {
+        cout << "Couldn't open the database" << endl;
+        return;
+    }
+
+    while(ifs)
+    {
+        int tempdana;
+        ifs >> tempdana;
+        if(!ifs)
+            break;
+        addNew(tempdana);
+    }
+
+    ifs.close();
+}

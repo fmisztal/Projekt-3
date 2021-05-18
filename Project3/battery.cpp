@@ -56,12 +56,12 @@ bool Battery::operator==(const Battery &b)
     return m_size==b.m_size && m_lifespan==b.m_lifespan;
 }
 
-ostream& operator<<(ostream &ost, Battery &b)
+ostream& operator<<=(ostream &ost, Battery &b)
 {
     return ost << "Battery: size- " << b.size() << " , Lifespan- " << b.lifespan() << " hours" << endl;
 };
 
-ostream& operator<<=(ostream &ost, Battery &b)
+ostream& operator<<(ostream &ost, Battery &b)
 {
     return ost << b.size() << " , " << b.lifespan() << endl;
 }
