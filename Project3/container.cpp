@@ -5,7 +5,8 @@
 
 using namespace std;
 
-Container::Container()
+template<class T>
+Container<T>::Container()
 {
     #ifdef _DEBUG
         cout << "Container()" << endl;
@@ -16,13 +17,14 @@ Container::Container()
     number_of_elements=0;
 }
 
-Container::~Container()
+template<class T>
+Container<T>::~Container()
 {
     #ifdef _DEBUG
         cout << "~Container()" << endl;
     #endif
 
-    Element *temp;
+    Element<T> *temp;
     while(first)
     {
         temp=first;
@@ -33,46 +35,53 @@ Container::~Container()
     number_of_elements=0;
 }
 
-Element *Container::getFirst() const
+template<class T>
+Element<T> *Container<T>::getFirst() const
 {
     return first;
 }
 
-void Container::setFirst(Element *value)
+template<class T>
+void Container<T>::setFirst(Element<T> *value)
 {
     first = value;
 }
 
-Element *Container::getLast() const
+template<class T>
+Element<T> *Container<T>::getLast() const
 {
     return last;
 }
 
-void Container::setLast(Element *value)
+template<class T>
+void Container<T>::setLast(Element<T> *value)
 {
     last = value;
 }
 
-int Container::getNumber_of_elements() const
+template<class T>
+int Container<T>::getNumber_of_elements() const
 {
     return number_of_elements;
 }
 
-void Container::setNumber_of_elements(int value)
+template<class T>
+void Container<T>::setNumber_of_elements(int value)
 {
     number_of_elements = value;
 }
 
-void Container::addNew(int nowa_dana)
+template<class T>
+void Container<T>::addNew(T new_object)
 {
-    Element *temp;
+    Element<T> *temp;
     if(number_of_elements==0)
     {
-        first=new Element;
+        first=new Element<T>;
         last=first;
         number_of_elements=1;
         temp=first;
-        temp->setObject(nowa_dana);
+        temp->setObject(new_object);
         temp->setPosition(1);
         temp->setNext(NULL);
         temp->setPrev(NULL);
@@ -80,25 +89,26 @@ void Container::addNew(int nowa_dana)
     else
     {
         temp=last;
-        temp->setNext(new Element);
+        temp->setNext(new Element<T>);
         temp->getNext()->setPrev(temp);
         temp=temp->getNext();
         temp->setPosition(temp->getPrev()->getPosition());
         temp->setPosition(temp->getPosition()+1);
         temp->setNext(NULL);
-        temp->setObject(nowa_dana);
+        temp->setObject(new_object);
         last=temp;
         number_of_elements++;
     }
 }
 
-void Container::write()
+template<class T>
+void Container<T>::write()
 {
     if(number_of_elements==0 || (first==NULL && last==NULL))
         cout << "Lista jest pusta" << endl;
     else
     {
-        Element *temp=first;
+        Element<T> *temp=first;
         do
         {
             cout << temp->getPosition() << ". " << temp->getObject() << endl;
@@ -108,9 +118,10 @@ void Container::write()
     }
 }
 
-void Container::swap(int one, int two)
+template<class T>
+void Container<T>::swap(int one, int two)
 {
-    Element *temp=first;
+    Element<T> *temp=first;
     if(one>two)
     {
         int t=one;
@@ -123,7 +134,7 @@ void Container::swap(int one, int two)
         cout << "Podany element nie istnieje" << endl;
     while(temp)
     {
-        Element *temp1, *temp2;
+        Element<T> *temp1, *temp2;
         if(temp->getPosition()==one)
             temp1=temp;
         if(temp->getPosition()==two)
@@ -173,9 +184,10 @@ void Container::swap(int one, int two)
     }
 }
 
-void Container::deleteElement(int number)
+template<class T>
+void Container<T>::deleteElement(int number)
 {
-    Element *temp=first;
+    Element<T> *temp=first;
 
     if(number>number_of_elements)
     {
@@ -221,7 +233,8 @@ void Container::deleteElement(int number)
     }
 }
 
-void Container::save()
+template<class T>
+void Container<T>::save()
 {
     ofstream ofs;
     ofs.open("file.txt", ios_base::out);
@@ -230,7 +243,7 @@ void Container::save()
         cout << "Couldn't open the database" << endl;
         return;
     }
-    Element *temp=first;
+    Element<T> *temp=first;
     while(temp)
     {
         ofs << temp->getObject() << endl;
@@ -240,7 +253,8 @@ void Container::save()
     ofs.close();
 }
 
-void Container::open()
+template<class T>
+void Container<T>::open()
 {
     ifstream ifs;
     ifs.open("file.txt", ios_base::in);

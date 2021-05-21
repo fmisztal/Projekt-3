@@ -4,7 +4,8 @@
 
 using namespace std;
 
-Element::~Element()
+template<class T>
+Element<T>::~Element()
 {
     #ifdef _DEBUG
         cout << "~Element()" << endl;
@@ -23,43 +24,54 @@ Element::~Element()
     }
 }
 
-Element *Element::getNext() const
+template<class T>
+Element<T> *Element<T>::getNext() const
 {
     return next;
 }
 
-void Element::setNext(Element *value)
+template<class T>
+void Element<T>::setNext(Element<T> *value)
 {
     next = value;
 }
 
-Element *Element::getPrev() const
+template<class T>
+Element<T> *Element<T>::getPrev() const
 {
     return prev;
 }
 
-void Element::setPrev(Element *value)
+template<class T>
+void Element<T>::setPrev(Element<T> *value)
 {
     prev = value;
 }
 
-int Element::getPosition() const
+template<class T>
+int Element<T>::getPosition() const
 {
     return position;
 }
 
-void Element::setPosition(int value)
+template<class T>
+void Element<T>::setPosition(int value)
 {
     position = value;
 }
 
-int Element::getObject() const
+template<class T>
+T Element<T>::getObject() const
 {
     return object;
 }
 
-void Element::setObject(int value)
+template<class T>
+void Element<T>::setObject(const T &value)
 {
     object = value;
 }
+
+
+
 

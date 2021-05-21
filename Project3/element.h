@@ -1,29 +1,30 @@
 #ifndef ELEMENT_H
 #define ELEMENT_H
 
+template<class T>
 class Element
 {
 public:
     //Element();
     ~Element();
 
-    Element *getNext() const;
-    void setNext(Element *value);
+    Element<T> *getNext() const;
+    void setNext(Element<T> *value);
 
-    Element *getPrev() const;
-    void setPrev(Element *value);
+    Element<T> *getPrev() const;
+    void setPrev(Element<T> *value);
 
     int getPosition() const;
     void setPosition(int value);
 
-    int getObject() const;
-    void setObject(int value);
+    T getObject() const;
+    void setObject(const T &value);
 
 private:
-    Element *next;
-    Element *prev;
+    Element <T>*next;
+    Element <T>*prev;
     int position;
-    int object;
+    T object;
 };
 
 
