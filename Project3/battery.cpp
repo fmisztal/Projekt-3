@@ -10,10 +10,6 @@ Battery::Battery(const int size, const int lifespan)
 {
     number_of_objects++;
 
-    #ifdef _DEBUG
-        cout << "Battery(const int, const int) [" << number_of_objects << "]" << endl;
-    #endif
-
     m_size=size;
     m_lifespan=lifespan;
 };
@@ -22,10 +18,6 @@ Battery::Battery(const Battery &b)
 {
     number_of_objects++;
 
-    #ifdef _DEBUG
-        cout << "Battery(const Battery) [" << number_of_objects << "]" << endl;
-    #endif
-
     m_size=b.size();
     m_lifespan=b.lifespan();
 }
@@ -33,10 +25,6 @@ Battery::Battery(const Battery &b)
 Battery::~Battery()
 {
     number_of_objects--;
-
-    #ifdef _DEBUG
-        cout << "~Battery() [" << number_of_objects << "]" << endl;
-    #endif
 };
 
 int Battery::batQuantity()

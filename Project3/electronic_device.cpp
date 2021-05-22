@@ -8,20 +8,12 @@ Electronic_device::Electronic_device(const int production_year)
 {
     number_of_objects++;
 
-    #ifdef _DEBUG
-        cout << "Electronic_device(const int) [" << number_of_objects << "]" << endl;
-    #endif
-
     m_production_year=production_year;
 }
 
 Electronic_device::Electronic_device(const Electronic_device &e)
 {
     number_of_objects++;
-
-    #ifdef _DEBUG
-        cout << "Electronic_device(const Electronic_device) [" << number_of_objects << "]" << endl;
-    #endif
 
     m_production_year=e.production_year();
     m_battery=battery();
@@ -31,10 +23,6 @@ Electronic_device::Electronic_device(const Electronic_device &e)
 Electronic_device::~Electronic_device()
 {
     number_of_objects--;
-
-    #ifdef _DEBUG
-        cout << "~Electronic_device() [" << number_of_objects << "]" << endl;
-    #endif
 }
 
 int Electronic_device::eleQuantity()
@@ -74,20 +62,12 @@ void Electronic_device::setUser(const User &user)
 
 void Electronic_device::operator++()
 {
-    #ifdef _DEBUG
-        cout << "operator++" << endl;
-    #endif
-
     int x=m_battery.lifespan()+5;
     m_battery.setLifespan(x);
 };
 
 void Electronic_device::operator--()
 {
-    #ifdef _DEBUG
-        cout << "operator--" << endl;
-    #endif
-
     int x=m_battery.lifespan()-5;
     m_battery.setLifespan(x);
 }

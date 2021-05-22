@@ -1,24 +1,71 @@
 #ifndef ELEMENT_H
 #define ELEMENT_H
+#include <iostream>
+
+using namespace std;
 
 template<class T>
 class Element
 {
 public:
-    //Element();
-    ~Element();
+    ~Element()
+    {
+        #ifdef _DEBUG
+            cout << "~Element()" << endl;
+        #endif
 
-    Element<T> *getNext() const;
-    void setNext(Element<T> *value);
+        if(prev && next)
+        {
+            prev->setNext(next);
+            next->setPrev(prev);
+            Element *temp=this->next;
+            while(temp)
+            {
+                temp->setPosition(temp->getPosition()-1);
+                temp=temp->getNext();
+            }
+        }
+    };
 
-    Element<T> *getPrev() const;
-    void setPrev(Element<T> *value);
+    Element<T> *getNext() const
+    {
+        return next;
+    };
 
-    int getPosition() const;
-    void setPosition(int value);
+    void setNext(Element<T> *value)
+    {
+        next = value;
+    };
 
-    T getObject() const;
-    void setObject(const T &value);
+    Element<T> *getPrev() const
+    {
+        return prev;
+    };
+
+    void setPrev(Element<T> *value)
+    {
+        prev = value;
+    };
+
+    int getPosition() const
+    {
+        return position;
+    };
+
+    void setPosition(int value)
+    {
+        position = value;
+    };
+
+    T getObject() const
+    {
+        return object;
+    };
+
+    void setObject(const T &value)
+    {
+        object = value;
+    };
 
 private:
     Element <T>*next;
@@ -26,6 +73,5 @@ private:
     int position;
     T object;
 };
-
 
 #endif // ELEMENT_H

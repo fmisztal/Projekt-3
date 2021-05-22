@@ -13,10 +13,6 @@ Hearing_aid::Hearing_aid(const string name, const double amplification_x, const 
 {
     number_of_objects++;
 
-    #ifdef _DEBUG
-        cout << "Hearing_aid(const string, const int, const int) [" << number_of_objects << "]" << endl;
-    #endif
-
     m_name=name;
     m_amplification_x=amplification_x;
     m_number_of_parameters=number_of_parameters;
@@ -31,10 +27,6 @@ Hearing_aid::Hearing_aid(const string name, const double amplification_x, const 
 Hearing_aid::Hearing_aid(const Hearing_aid &h)
 {
     number_of_objects++;
-
-    #ifdef _DEBUG
-        cout << "Hearing_aid(const Hearing_aid) [" << number_of_objects << "]" << endl;
-    #endif
 
     m_name=h.m_name;
     m_amplification_x=h.m_amplification_x;
@@ -62,10 +54,6 @@ Hearing_aid::~Hearing_aid()
 {
     number_of_objects--;
 
-    #ifdef _DEBUG
-        cout << "~Hearing_aid() [" << number_of_objects << "]" << endl;
-    #endif
-
     deleteVector();
 };
 
@@ -86,10 +74,6 @@ void Hearing_aid::deleteVector()
 
 Hearing_aid& Hearing_aid::operator=(Hearing_aid &h)
 {
-    #ifdef _DEBUG
-        cout << "operator=" << endl;
-    #endif
-
     m_name=h.m_name;
     m_amplification_x=h.m_amplification_x;
     m_number_of_parameters=h.m_number_of_parameters;
@@ -117,10 +101,6 @@ Hearing_aid& Hearing_aid::operator=(Hearing_aid &h)
 
 bool Hearing_aid::operator==(const Hearing_aid &h)
 {
-    #ifdef _DEBUG
-        cout << "operator==" << endl;
-    #endif
-
     if(m_battery==h.m_battery && m_user==h.m_user && m_production_year==h.m_production_year && m_name==h.m_name && m_amplification_x==h.m_amplification_x)
         if(m_number_of_parameters==h.m_number_of_parameters)
         {
@@ -190,10 +170,6 @@ istream& operator>>(istream &is, Hearing_aid &h)
 
 Hearing_aid::operator string()
 {
-    #ifdef _DEBUG
-        cout << "operator string()" << endl;
-    #endif
-
     return "Current sound amplification: " + to_string(m_amplification_x);
 };
 
@@ -229,19 +205,11 @@ void Hearing_aid::setAmplification_x(double amplification_x)
 
 void operator|=(double x, Hearing_aid &h)
 {
-    #ifdef _DEBUG
-        cout << "operator|=" << endl;
-    #endif
-
     h.setAmplification_x(x);
 };
 
 void Hearing_aid::draw()
 {
-    #ifdef _DEBUG
-        cout << "draw() [H]" << endl;
-    #endif
-
     cout << "-----------HEARING_AID-----------" << endl;
     Electronic_device *ctpr;
     ctpr=dynamic_cast<Electronic_device*>(this);
@@ -262,10 +230,6 @@ void Hearing_aid::draw()
 
 void Hearing_aid::save()
 { 
-    #ifdef _DEBUG
-        cout << "save() [H]" << endl;
-    #endif
-
     ofstream ofs;
     ofs.open("file.txt", ios_base::out);
     if(!ofs.good())
@@ -282,10 +246,6 @@ void Hearing_aid::save()
 
 void Hearing_aid::open()
 {
-    #ifdef _DEBUG
-        cout << "open() [H]" << endl;
-    #endif
-
     ifstream ifs;
     ifs.open("file.txt", ios_base::in);
     if(!ifs.good())

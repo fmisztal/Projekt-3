@@ -75,3 +75,28 @@ void Element<T>::setObject(const T &value)
 
 
 
+
+T Element::getObject() const
+{
+    return object;
+}
+
+T Element::getObject() const
+{
+    return object;
+}
+
+void Element::setObject(const T &value)
+{
+    object = value;
+}
+
+T *Element::getObject() const
+{
+    return object;
+}
+
+void Element::setObject(T *value)
+{
+    object = value;
+}
