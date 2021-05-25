@@ -256,6 +256,16 @@ public:
             return;
         }
 
+        Element<T> *temp;
+        while(first)
+        {
+            temp=first;
+            first=first->getNext();
+            free(temp);
+        }
+        last=first;
+        number_of_elements=0;
+
         while(ifs)
         {
             T tempdana;

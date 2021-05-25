@@ -119,7 +119,21 @@ void Hearing_aid::ownership()
     cout << "This HEARING AID belongs to " << m_user << endl;
 }
 
-ostream& operator<<(ostream &os, Hearing_aid &h)
+/*ostream& operator<<(ostream &os, Hearing_aid &h)
+{
+    Electronic_device *ctpr;
+    ctpr=dynamic_cast<Electronic_device*>(&h);
+    os << *ctpr;
+
+    os << h.name() << endl;
+    os << h.amplification_x() << " , " << h.number_of_parameters() << endl;
+    if(h.number_of_parameters()!=0)
+        for(int i=0; i<h.number_of_parameters(); i++)
+            os << *(h.parameters[i]);
+    return os;
+}*/
+
+ostream& operator<<(ostream &os, Hearing_aid h)
 {
     Electronic_device *ctpr;
     ctpr=dynamic_cast<Electronic_device*>(&h);

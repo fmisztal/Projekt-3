@@ -62,7 +62,7 @@ public:
         return object;
     };
 
-    void setObject(const T &value)
+    void setObject(T &value)
     {
         object = value;
     };

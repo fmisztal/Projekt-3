@@ -129,7 +129,8 @@ private:
 \param &os strumień
 \return zwraca strumień
 */
-ostream& operator<<(ostream &os, Hearing_aid &h);
+//ostream& operator<<(ostream &os, Hearing_aid &h);
+ostream& operator<<(ostream &os, Hearing_aid h);
 
 ///Operator <<=
 /** Operator wypisujący pola obiektu do bazy danych
