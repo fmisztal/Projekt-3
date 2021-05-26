@@ -12,10 +12,6 @@ class Container
 public:
     Container()
     {
-        #ifdef _DEBUG
-            cout << "Container()" << endl;
-        #endif
-
         first=NULL;
         last=NULL;
         number_of_elements=0;
@@ -23,10 +19,6 @@ public:
 
     ~Container()
     {
-        #ifdef _DEBUG
-            cout << "~Container()" << endl;
-        #endif
-
         Element<T> *temp;
         while(first)
         {
@@ -100,7 +92,7 @@ public:
     void write()
     {
         if(number_of_elements==0 || (first==NULL && last==NULL))
-            cout << "The list is empty" << endl;
+            throw string("The container is empty");
         else
         {
             Element<T> *temp=first;
@@ -110,7 +102,7 @@ public:
                 cout << temp->getObject() << endl;
                 temp=temp->getNext();
             }while(temp);
-            cout << "The list has " << number_of_elements << " elements" << endl << endl;
+            cout << "The container has " << number_of_elements << " elements" << endl << endl;
         }
     };
 
@@ -124,9 +116,9 @@ public:
             two=t;
         }
         if(one==two)
-            cout << "You chose the same object twice" << endl;
+            throw string("You chose the same object twice");
         if(two>number_of_elements)
-            cout << "Selected object doesn't exist" << endl;
+            throw string("Selected object doesn't exist");
         while(temp)
         {
             Element<T> *temp1, *temp2;
@@ -184,10 +176,7 @@ public:
         Element<T> *temp=first;
 
         if(number>number_of_elements)
-        {
-            cout << "There's no such element" << endl;
-            return;
-        }
+            throw string("There's no such element");
 
         if(number==1)
         {
@@ -229,13 +218,12 @@ public:
 
     void save()
     {
+        if(!first)
+            throw string("The container is empty");
         ofstream ofs;
         ofs.open("file.txt", ios_base::out);
         if(!ofs.good())
-        {
-            cout << "Couldn't open the database" << endl;
-            return;
-        }
+            throw string("Couldn't open the database");
         Element<T> *temp=first;
         while(temp)
         {
@@ -252,7 +240,7 @@ public:
         ifs.open("file.txt", ios_base::in);
         if(!ifs.good())
         {
-            cout << "Couldn't open the database" << endl;
+            throw string("Couldn't open the database");
             return;
         }
 
