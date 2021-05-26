@@ -175,11 +175,19 @@ public:
     {
         Element<T> *temp=first;
 
-        if(number>number_of_elements)
+        if(number>number_of_elements || number==0)
             throw string("There's no such element");
 
         if(number==1)
         {
+            if(number_of_elements==1)
+            {
+                first=NULL;
+                last=NULL;
+                number_of_elements=0;
+                return;
+            }
+
             first->getNext()->setPrev(NULL);
             temp=first->getNext();
             delete first;

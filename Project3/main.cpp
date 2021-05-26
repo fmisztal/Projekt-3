@@ -25,6 +25,19 @@ void checkInt(int &i)
     i=atoi(data.c_str());
 }
 
+void checkLength(char &i)
+{
+    string data;
+    cin >> data;
+    int length=data.size();
+    if(length>1)
+    {
+        i=0;
+        return;
+    }
+    i=data[0];
+}
+
 void addObject()
 {
     string name;
@@ -93,7 +106,7 @@ void menu()
     {
         cout << "1. Add object \n2. Delete object \n3. Swap objects \n4. Write the container " << endl;
         cout << "5. Save the container \n6. Read the container \n7. Leave \n\n";
-        cin >> option;
+        checkLength(option);
         switch(option)
         {
         case '1':
