@@ -1,12 +1,16 @@
 #include <iostream>
 #include "container.h"
 #include "Hearing_aid.h"
+#include "phone.h"
+#include "smartphone.h"
 
 using namespace std;
 
 
-Container<Hearing_aid> electronic_devices;
-Container<Hearing_aid> electronic_devices2;
+Container<Hearing_aid> hearingaids;
+Container<Phone> phones;
+Container<Smartphone> smartphones;
+
 
 void checkInt(int &i)
 {
@@ -38,7 +42,74 @@ void checkLength(char &i)
     i=data[0];
 }
 
-void addObject()
+template<class T>
+void addElectronic_device(T &a)
+{
+    string name;
+    int int1,int2;
+    cout << "Enter the username, age and pesel: ";
+    cin >> name;
+    checkInt(int1);
+    checkInt(int2);
+    a.user().setName(name);
+    a.user().setAge(int1);
+    a.user().setPesel(int2);
+
+    cout << "Set year of production: ";
+    checkInt(int1);
+    a.setProduction_year(int1);
+
+    cout << "Enter the size and lifespan of battery: ";
+    checkInt(int1);
+    checkInt(int2);
+    a.battery().setSize(int1);
+    a.battery().setLifespan(int2);
+}
+
+void addPhone()
+{
+    string name;
+    int int1, int2;
+    bool sim;
+    cout << endl << "Enter the name, processor and dual_sim (0 or 1): ";
+    cin >> name;
+    checkInt(int1);
+    checkInt(int2);
+    if(int2==1)
+        sim=true;
+    else
+        sim=false;
+    Phone a(name,int1,sim);
+
+    addElectronic_device(a);
+
+    phones.addNew(a);
+}
+
+void addSmartphone()
+{
+    string name;
+    bool sim;
+    int int1, int2;
+    int int3, int4, int5;
+    cout << endl << "Enter the name, processor, dual_sim (0 or 1), inches, weight and megapiksels: ";
+    checkInt(int1);
+    checkInt(int2);
+    checkInt(int3);
+    checkInt(int4);
+    checkInt(int5);
+    if(int2==1)
+        sim=true;
+    else
+        sim=false;
+    Smartphone a(int3,int4,int5,name,int1,sim);
+
+    addElectronic_device(a);
+
+    smartphones.addNew(a);
+}
+
+void addHearingaid()
 {
     string name;
     int int1, int2;
@@ -57,46 +128,118 @@ void addObject()
         a.parameters[i]->setValue(int1);
     }
 
-    cout << "Enter the username, age and pesel: ";
-    cin >> name;
-    checkInt(int1);
-    checkInt(int2);
-    a.user().setName(name);
-    a.user().setAge(int1);
-    a.user().setPesel(int2);
+    addElectronic_device(a);
 
-    cout << "Set year of production: ";
-    checkInt(int1);
-    a.setProduction_year(int1);
+    hearingaids.addNew(a);
+}
 
-    cout << "Enter the size and lifespan of battery: ";
+void addObject()
+{
+    int int1;
+    cout << "Which object do you want to add: 1-Hearing aid, 2-Phone, 3-Smartphone: ";
     checkInt(int1);
-    checkInt(int2);
-    a.battery().setSize(int1);
-    a.battery().setLifespan(int2);
-
-    electronic_devices.addNew(a);
+    if(int1==1) addHearingaid();
+    if(int1==2) addPhone();
+    if(int1==3) addSmartphone();
 }
 
 void deleteObject()
 {
-    int int1;
-    cout << "Choose number of the element you want to delete: ";
+    int int1, int2;
+    cout << "Which object do you want to delete: 1-Hearing aid, 2-Phone, 3-Smartphone: ";
     checkInt(int1);
+    cout << "Choose number of the element you want to delete: ";
+    checkInt(int2);
 
-    try{electronic_devices.deleteElement(int1);}
-    catch(string s){cout << s << endl; system("PAUSE");}
+    if(int1==1)
+        try{hearingaids.deleteElement(int2);}
+        catch(string s){cout << s << endl; system("PAUSE");}
+    if(int1==2)
+        try{phones.deleteElement(int2);}
+        catch(string s){cout << s << endl; system("PAUSE");}
+    if(int1==3)
+        try{smartphones.deleteElement(int2);}
+        catch(string s){cout << s << endl; system("PAUSE");}
 }
 
 void swapObjects()
 {
-    int int1, int2;
-    cout << "Select the objects you want to swap: ";
+    int int1, int2, int3;
+    cout << "Which object do you want to swap: 1-Hearing aid, 2-Phone, 3-Smartphone: ";
     checkInt(int1);
+    cout << "Select the objects you want to swap: ";
     checkInt(int2);
+    checkInt(int3);
 
-    try{electronic_devices.swap(int1, int2);}
-    catch(string s){cout << s << endl; system("PAUSE");}
+    if(int1==1)
+        try{hearingaids.swap(int2, int3);}
+        catch(string s){cout << s << endl; system("PAUSE");}
+    if(int1==2)
+        try{phones.swap(int2, int3);}
+        catch(string s){cout << s << endl; system("PAUSE");}
+    if(int1==3)
+        try{smartphones.swap(int2, int3);}
+        catch(string s){cout << s << endl; system("PAUSE");}
+}
+
+void writeContainer()
+{
+    int int1;
+    cout << "Which container do you want to write: 1-Hearing aid, 2-Phone, 3-Smartphone: ";
+    checkInt(int1);
+
+    if(int1==1)
+    {
+        try{hearingaids.write();}
+        catch(string s){cout << s << endl;}
+        system("PAUSE");
+    }
+    if(int1==2)
+    {
+        try{phones.write();}
+        catch(string s){cout << s << endl;}
+        system("PAUSE");
+    }
+    if(int1==3)
+    {
+        try{smartphones.write();}
+        catch(string s){cout << s << endl;}
+        system("PAUSE");
+    }
+}
+
+void saveContainer()
+{
+    int int1;
+    cout << "Which container do you want to save: 1-Hearing aid, 2-Phone, 3-Smartphone: ";
+    checkInt(int1);
+
+    if(int1==1)
+        try{hearingaids.save();}
+        catch(string s){cout << s << endl; system("PAUSE");}
+    if(int1==2)
+        try{phones.save();}
+        catch(string s){cout << s << endl; system("PAUSE");}
+    if(int1==3)
+        try{smartphones.save();}
+        catch(string s){cout << s << endl; system("PAUSE");}
+}
+
+void openContainer()
+{
+    int int1;
+    cout << "Which container do you want to save: 1-Hearing aid, 2-Phone, 3-Smartphone: ";
+    checkInt(int1);
+
+    if(int1==1)
+        try{hearingaids.open();}
+        catch(string s){cout << s << endl; system("PAUSE");}
+    if(int1==2)
+        try{phones.open();}
+        catch(string s){cout << s << endl; system("PAUSE");}
+    if(int1==3)
+        try{smartphones.open();}
+        catch(string s){cout << s << endl; system("PAUSE");}
 }
 
 void menu()
@@ -122,21 +265,15 @@ void menu()
         break;
 
         case '4':
-        {
-            try{electronic_devices.write();}
-            catch(string s){cout << s << endl;}
-            system("PAUSE");
-        }
+            writeContainer();
         break;
 
         case '5':
-            try{electronic_devices.save();}
-            catch(string s){cout << s << endl; system("PAUSE");}
+            saveContainer();
         break;
 
         case '6':
-            try{electronic_devices.open();}
-            catch(string s){cout << s << endl; system("PAUSE");}
+            openContainer();
         break;
 
         case '7':
