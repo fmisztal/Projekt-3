@@ -308,7 +308,9 @@ public:
             temp2=c.getFirst();
             while(temp1 && temp2)
             {
-                if(temp1->getObject()!=temp2->getObject())
+                if(temp1->getObject()==temp2->getObject())
+                    cout << "";
+                else
                     return false;
                 temp1=temp1->getNext();
                 temp2=temp2->getNext();
@@ -329,7 +331,7 @@ public:
         }
     }
 
-    bool contains(T &t)
+    bool contains(const T &t)
     {
         Element<T> *temp;
         temp=first;
@@ -340,6 +342,21 @@ public:
             temp=temp->getNext();
         }
         return false;
+    };
+
+    Element <T>*getElement(int number)
+    {
+        if(number>number_of_elements)
+            return nullptr;
+        Element<T> *temp;
+        temp=first;
+        while(temp)
+        {
+            if(temp->getPosition()==number)
+                break;
+            temp=temp->getNext();
+        }
+        return temp;
     };
 
 private:
