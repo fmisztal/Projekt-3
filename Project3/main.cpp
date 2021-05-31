@@ -15,6 +15,28 @@ Container<Phone> phones2;
 Container<Smartphone> smartphones;
 Container<Smartphone> smartphones2;
 
+void intTest()
+{
+    cout << "Testing containers on type int" << endl << endl;
+    int a=1, b=2, c=3, d=4, e=5, f=6, g=7, h=8;
+    inty.addNew(a);
+    inty.addNew(b);
+    inty.addNew(c);
+    inty.addNew(d);
+    inty.addNew(e);
+    inty.addNew(f);
+    inty.addNew(g);
+    inty.addNew(h);
+
+    inty.swap(2,7);
+    inty.write();
+    inty.save();
+    inty2.open();
+    inty2.write();
+
+    system("PAUSE");
+    system("cls");
+}
 
 void checkInt(int &i)
 {
@@ -496,6 +518,8 @@ void menu()
 
 int main()
 {
+    intTest();
+
     menu();
 
     return 0;
