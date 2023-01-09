@@ -1,3 +1,0 @@
-C:/Users/Filip/Documents/project-3/build-Project3-Desktop_Qt_5_15_1_MinGW_64_bit-Debug/CMakeFiles/Project3.dir
-C:/Users/Filip/Documents/project-3/build-Project3-Desktop_Qt_5_15_1_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
-C:/Users/Filip/Documents/project-3/build-Project3-Desktop_Qt_5_15_1_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
